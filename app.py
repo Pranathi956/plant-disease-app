@@ -1,6 +1,18 @@
 import os
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
 
+import gdown
+
+# Download model from Google Drive if not present
+MODEL_PATH = 'best_model.pth'
+FILE_ID = '1SbblWFMN0DVeJDdQ0FpXgh3A82FUYzUd'  
+
+if not os.path.exists(MODEL_PATH):
+    print("Downloading model...")
+    gdown.download(f'https://drive.google.com/uc?id={FILE_ID}',
+                   MODEL_PATH, quiet=False)
+    print("Model downloaded!")
+
 import streamlit as st
 import torch
 import torch.nn as nn
